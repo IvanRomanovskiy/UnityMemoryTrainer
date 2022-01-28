@@ -19,7 +19,6 @@ public class ButtonGenerator : MonoBehaviour
 
         var x = panel.transform.position.x - panel.GetComponent<RectTransform>().sizeDelta.x/2f + buttonSizeX/2f + padding;
         var y = panel.transform.position.y + panel.GetComponent<RectTransform>().sizeDelta.y / 2f - buttonSizeY / 2f - padding;
-        Debug.Log(buttonSizeX);
 
         
         for (int i = 0; i < size; i++)
@@ -38,10 +37,7 @@ public class ButtonGenerator : MonoBehaviour
         newButton.transform.SetParent(panel.transform);
         newButton.GetComponent<RectTransform>().sizeDelta = new Vector2(buttonSizeX, buttonSizeY);
         newButton.transform.localScale = new Vector3(1, 1);
-        Debug.Log(new Vector3(x, y));
         newButton.transform.localPosition = new Vector3(x, y);
-        Debug.Log(newButton.transform.position);
-        //newButton.transform.
 
     }
 }
