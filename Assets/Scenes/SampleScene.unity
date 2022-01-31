@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 427558834}
   - component: {fileID: 427558836}
   - component: {fileID: 427558835}
+  - component: {fileID: 427558837}
   m_Layer: 0
   m_Name: ScoreText
   m_TagString: Untagged
@@ -193,7 +194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 0'
+  m_Text: 'Score: '
 --- !u!222 &427558836
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -202,6 +203,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427558833}
   m_CullTransparentMesh: 1
+--- !u!114 &427558837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427558833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0260ca7a315f0fd42b50696c7e6d97b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 427558835}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,9 +387,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20d7c1bf3cbe8f4e91c4e533e9ae8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 5
   padding: 3
   panel: {fileID: 552328208}
+  size: 5
+  delay: 3
+  timeDisplay: 0.5
 --- !u!1 &640694026
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,6 +647,7 @@ GameObject:
   - component: {fileID: 2124414618}
   - component: {fileID: 2124414620}
   - component: {fileID: 2124414619}
+  - component: {fileID: 2124414621}
   m_Layer: 0
   m_Name: LivesText
   m_TagString: Untagged
@@ -699,3 +716,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124414617}
   m_CullTransparentMesh: 1
+--- !u!114 &2124414621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124414617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79fdf90fe7f5af548a4c25e3ce62828c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 2124414619}
