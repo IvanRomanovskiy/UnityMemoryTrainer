@@ -7,14 +7,14 @@ public class ScoreManager
 
     public static int Score { get; private set; }
 
-    public static void AddScrore(int amount)
+    public static void AddScore(int amount)
     {
         Score = Mathf.Clamp(Score - amount, 0, 9999);
 
         OnScoreValueChangedEvent?.Invoke(Score);
     }
 
-    public static void ClearScrore(object sender)
+    public static void ClearScore()
     {
         Score = 0;
 

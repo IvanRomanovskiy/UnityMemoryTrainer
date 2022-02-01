@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     private Dictionary<Type, IGameBehavior> behaviorsMap;
-    private IGameBehavior behaviorCurrent;
+    private static IGameBehavior behaviorCurrent;
+    private static Type typeCurrent;
 
     private void Start()
     {
@@ -51,21 +52,35 @@ public class GameController : MonoBehaviour
     public void SetBehaviorMemorize()
     {
         var behavior = GetGameBehavior<GameBehaviorMemorize>();
+        typeCurrent = typeof(GameBehaviorMemorize);
         SetBehavior(behavior);
     }
+
     public void SetBehaviorRepeat()
     {
         var behavior = GetGameBehavior<GameBehaviorRepeat>();
+        typeCurrent = typeof(GameBehaviorRepeat);
         SetBehavior(behavior);
     }
+
     public void SetBehaviorCorrectAnswer()
     {
         var behavior = GetGameBehavior<GameBehaviorCorrectAnswer>();
+        typeCurrent = typeof(GameBehaviorCorrectAnswer);
         SetBehavior(behavior);
     }
+
     public void SetBehaviorWrongAnswer()
     {
         var behavior = GetGameBehavior<GameBehaviorWrongAnswer>();
+        typeCurrent = typeof(GameBehaviorWrongAnswer);
         SetBehavior(behavior);
     }
+
+    public bool isBehavior(Type behavior)
+    {
+        if (typeCurrent.Equals(behavior)) return true;
+        else return false;
+    }
+
 }

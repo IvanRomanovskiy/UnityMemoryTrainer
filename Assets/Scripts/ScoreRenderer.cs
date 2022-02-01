@@ -3,16 +3,17 @@ using UnityEngine.UI;
 
 public class ScoreRenderer : MonoBehaviour
 {
-    [SerializeField] private Text text;
+    [SerializeField] private Text scoreText;
 
     void Awake()
     {
         ScoreManager.OnScoreValueChangedEvent += OnScoreValueChanged;
+        ScoreManager.ClearScore();
     }
 
     private void OnScoreValueChanged(int newLivesValue)
     {
-        text.text = $"Score: {newLivesValue}";
+        scoreText.text = $"Score: {newLivesValue}";
     }
 
     private void OnDestroy()

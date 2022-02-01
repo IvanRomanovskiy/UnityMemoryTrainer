@@ -7,16 +7,16 @@ public class LivesRenderer : MonoBehaviour
 
     void Awake()
     {
-        LivesManager.OnLivesValueChangedEvent += OnLivesValueChangedEvent;
+        LivesManager.OnLivesValueChangedEvent += OnLivesValueChanged;
     }
 
-    private void OnLivesValueChangedEvent(object sender, int newLivesValue)
+    private void OnLivesValueChanged(int newLivesValue)
     {
         text.text = $"Lives: {newLivesValue}";
     }
 
     private void OnDestroy()
     {
-        LivesManager.OnLivesValueChangedEvent -= OnLivesValueChangedEvent;
+        LivesManager.OnLivesValueChangedEvent -= OnLivesValueChanged;
     }
 }

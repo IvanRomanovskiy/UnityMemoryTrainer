@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonGenerator : MonoBehaviour
 {
-    
+    public int size;
 
     private float buttonSizeX;
     private float buttonSizeY;
@@ -16,12 +16,12 @@ public class ButtonGenerator : MonoBehaviour
 
     private List<GameObject> buttonList;
 
-    [SerializeField] private int size;
+    
     [SerializeField] private float delay;
     [SerializeField] private float timeDisplay;
 
-
-
+    public delegate void ButtonOutpuHandler(int i, int j);
+    public static event ButtonOutpuHandler onButtonPressedEvent; 
 
     void Start()
     {
@@ -51,13 +51,14 @@ public class ButtonGenerator : MonoBehaviour
         newButton.GetComponent<RectTransform>().sizeDelta = new Vector2(buttonSizeX, buttonSizeY);
         newButton.transform.localScale = new Vector3(1, 1);
         newButton.transform.localPosition = new Vector3(x, y);
+        newButton.GetComponent<Button>().onClick.AddListener(delegate { onButtonPressedEvent?.Invoke(i, j); });
         buttonList.Add(newButton);
     }
 
-    IEnumerator changeColor(int i, int j)
+    public IEnumerator changeColor(int i, int j, Color color)
     {
         ColorBlock colorVar = buttonList[i * size + j].GetComponent<Button>().colors;
-        colorVar.normalColor = new Color(0, 0, 1);
+        colorVar.normalColor = color;
         buttonList[i * size + j].GetComponent<Button>().colors = colorVar;
         yield return new WaitForSecondsRealtime(timeDisplay);
         buttonList[i * size + j].GetComponent<Button>().colors = ColorBlock.defaultColorBlock;
