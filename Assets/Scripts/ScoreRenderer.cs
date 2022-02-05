@@ -8,7 +8,6 @@ public class ScoreRenderer : MonoBehaviour
     void Awake()
     {
         ScoreManager.OnScoreValueChangedEvent += OnScoreValueChanged;
-        ScoreManager.ClearScore();
     }
 
     private void OnScoreValueChanged(int newLivesValue)

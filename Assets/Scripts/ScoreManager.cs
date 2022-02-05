@@ -9,7 +9,7 @@ public class ScoreManager
 
     public static void AddScore(int amount)
     {
-        Score = Mathf.Clamp(Score - amount, 0, 9999);
+        Score = Mathf.Clamp(Score + amount, 0, 999);
 
         OnScoreValueChangedEvent?.Invoke(Score);
     }

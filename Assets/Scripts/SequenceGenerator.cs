@@ -3,17 +3,19 @@ using System.Collections.Generic;
 
 public class SequenceGenerator : MonoBehaviour
 {
-    private List<(int, int)> sequence;
-    private static int pointer;
+    public List<(int, int)> sequence { get; private set; }
+    public static int pointer;
     
     [SerializeField] private ButtonGenerator generator;
     [SerializeField] private GameController controller;
 
+    
     private void Awake()
     {
-        ButtonGenerator.onButtonPressedEvent += ButtonPressed;
         ScoreManager.OnScoreValueChangedEvent += ScoreChanged;
         sequence = new List<(int, int)>();
+        AddRandomValueInSequence(0);
+       
     }
 
     private void ScoreChanged(int newScoreValue)
@@ -26,30 +28,11 @@ public class SequenceGenerator : MonoBehaviour
         AddRandomValueInSequence(newScoreValue);
     }
 
-    private void AddRandomValueInSequence(int newScoreValue)
+    public void AddRandomValueInSequence(int newScoreValue)
     {
         for(int i = sequence.Count; i < newScoreValue + 1; i++)
         {
             sequence.Add((Random.Range(0, generator.size), Random.Range(0, generator.size)));
         }
-    }
-
-    private void ButtonPressed(int i, int j)
-    {
-        if(controller.isBehavior(typeof(GameBehaviorRepeat)))
-        {
-            if (!checkSequence((i, j))) WrongAnswer(i,j);
-        }
-    }
-
-    private void WrongAnswer(int i, int j)
-    {
-        pointer = 0;
-        controller.SetBehaviorWrongAnswer();  
-    }
-
-    private bool checkSequence((int, int) val)
-    {
-        return val.Equals(sequence[pointer++]) ? true : false;
     }
 }   

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 public class LivesManager
 {
     public delegate void LivesHandler(int newLivesValue);
@@ -11,6 +10,8 @@ public class LivesManager
     public static void SetLives(int amount)
     {
         Lives = Mathf.Clamp(amount, 0, 999);
+
+        OnLivesValueChangedEvent.Invoke(Lives);
     }
 
     public static void AddLives(int amount)

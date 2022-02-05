@@ -1,15 +1,22 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] Text behaviorText;
+    [SerializeField] ButtonGenerator buttonGenerator;
+    [SerializeField] SequenceGenerator sequenceGenerator;
+
     private Dictionary<Type, IGameBehavior> behaviorsMap;
     private static IGameBehavior behaviorCurrent;
     private static Type typeCurrent;
 
     private void Start()
     {
+        ScoreManager.ClearScore();
+        LivesManager.SetLives(5);
         InitBehaviors();
         SetBehaviorByDefault();
     }
@@ -18,10 +25,10 @@ public class GameController : MonoBehaviour
     {
         behaviorsMap = new Dictionary<Type, IGameBehavior>();
 
-        behaviorsMap[typeof(GameBehaviorMemorize)] = new GameBehaviorMemorize();
-        behaviorsMap[typeof(GameBehaviorRepeat)] = new GameBehaviorRepeat();
-        behaviorsMap[typeof(GameBehaviorCorrectAnswer)] = new GameBehaviorCorrectAnswer();
-        behaviorsMap[typeof(GameBehaviorWrongAnswer)] = new GameBehaviorWrongAnswer();
+        behaviorsMap[typeof(GameBehaviorMemorize)] = new GameBehaviorMemorize(buttonGenerator,sequenceGenerator, behaviorText);
+        behaviorsMap[typeof(GameBehaviorRepeat)] = new GameBehaviorRepeat(buttonGenerator, sequenceGenerator,this, behaviorText);
+        behaviorsMap[typeof(GameBehaviorCorrectAnswer)] = new GameBehaviorCorrectAnswer(buttonGenerator, sequenceGenerator, this, behaviorText);
+        behaviorsMap[typeof(GameBehaviorWrongAnswer)] = new GameBehaviorWrongAnswer(buttonGenerator, sequenceGenerator, this, behaviorText);
 
     }
 
@@ -47,7 +54,9 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         if (behaviorCurrent != null) behaviorCurrent.Update();
+        
     }
+    
 
     public void SetBehaviorMemorize()
     {
